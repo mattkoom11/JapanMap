@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "JapanMap",
+    "slug": "japan-map",
+    "version": "1.0.0",
+    "scheme": "japanmap",
+    "platforms": ["ios"],
+    "ios": {
+      "bundleIdentifier": "com.personal.japanmap",
+      "config": {
+        "googleMapsApiKey": ""
+      }
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "react-native-maps",
+        {
+          "googleMapsApiKey": ""
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
