@@ -50,7 +50,7 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
   },
 
   distinctNeighborhoods: (places) => {
-    const set = new Set(places.map((p) => p.neighborhood).filter(Boolean) as string[]);
-    return Array.from(set).sort();
+    const neighborhoods = new Set(places.map((p) => p.neighborhood).filter(Boolean) as string[]);
+    return Array.from(neighborhoods).sort();
   },
 }));
