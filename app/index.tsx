@@ -63,7 +63,7 @@ export default function MapScreen() {
         );
       }
     }
-  }, [scope, scopeValue]);
+  }, [scope, scopeValue, categories, places]);
 
   const filtered = applyFilters(places);
   const activeCount = categories.length + (scope !== 'all' && scopeValue ? 1 : 0);

@@ -8,7 +8,7 @@ interface PlacesStore {
   loadPlaces: () => Promise<void>;
   savePlace: (place: Omit<Place, 'id' | 'created_at'>) => Promise<void>;
   updatePlace: (id: string, updates: Partial<Pick<Place, 'visited' | 'ranking'>>) => Promise<void>;
-  deletePlace: (id: string) => Promise<void>;
+  deletePlace: (id: string) => Promise<boolean>;
 }
 
 export const usePlacesStore = create<PlacesStore>((set, get) => ({
@@ -54,6 +54,8 @@ export const usePlacesStore = create<PlacesStore>((set, get) => ({
     const { error } = await supabase.from('places').delete().eq('id', id);
     if (!error) {
       set((s) => ({ places: s.places.filter((p) => p.id !== id) }));
+      return true;
     }
+    return false;
   },
 }));

@@ -28,8 +28,8 @@ export default function PlaceDetailScreen() {
         text: 'Remove',
         style: 'destructive',
         onPress: async () => {
-          await deletePlace(place.id);
-          router.back();
+          const ok = await deletePlace(place.id);
+          if (ok) router.back();
         },
       },
     ]);

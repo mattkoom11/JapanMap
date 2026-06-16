@@ -51,5 +51,9 @@ const PREFECTURE_TO_REGION: Record<string, Region> = {
 };
 
 export function prefectureToRegion(prefecture: string): Region {
-  return PREFECTURE_TO_REGION[prefecture] ?? 'kanto';
+  const region = PREFECTURE_TO_REGION[prefecture];
+  if (!region) {
+    console.warn(`prefectureToRegion: unrecognized prefecture "${prefecture}", defaulting to kanto`);
+  }
+  return region ?? 'kanto';
 }
