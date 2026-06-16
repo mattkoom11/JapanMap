@@ -5,7 +5,7 @@
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.14",
     "@supabase/supabase-js": "^2.108.2",
-    "expo": "~56.0.11",
+    "expo": "~56.0.12",
     "expo-router": "~56.2.10",
     "expo-status-bar": "~56.0.4",
     "react": "19.2.3",
@@ -18,7 +18,7 @@
     "zustand": "^5.0.14"
   },
   "devDependencies": {
-    "@react-native/jest-preset": "^0.86.0",
+    "@react-native/jest-preset": "^0.85.0",
     "@types/jest": "^30.0.0",
     "@types/react": "~19.2.2",
     "babel-preset-expo": "^56.0.15",
