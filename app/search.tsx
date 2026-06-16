@@ -38,37 +38,40 @@ export default function SearchScreen() {
     if (!selected) return;
     setSaving(true);
 
-    const prefecture =
-      extractAddressComponent(selected, 'administrative_area_level_1') ?? 'Tokyo';
-    const rawCity =
-      extractAddressComponent(selected, 'locality') ??
-      extractAddressComponent(selected, 'administrative_area_level_2');
-    const city =
-      rawCity && MAIN_CITY_NAMES.includes(rawCity) ? rawCity : null;
-    const neighborhood =
-      extractAddressComponent(selected, 'sublocality_level_1') ??
-      extractAddressComponent(selected, 'sublocality');
-    const region = prefectureToRegion(prefecture);
-    const photoRefs = (selected.photos ?? []).map((p) => p.name);
+    try {
+      const prefecture =
+        extractAddressComponent(selected, 'administrative_area_level_1') ?? 'Tokyo';
+      const rawCity =
+        extractAddressComponent(selected, 'locality') ??
+        extractAddressComponent(selected, 'administrative_area_level_2');
+      const city =
+        rawCity && MAIN_CITY_NAMES.includes(rawCity) ? rawCity : null;
+      const neighborhood =
+        extractAddressComponent(selected, 'sublocality_level_1') ??
+        extractAddressComponent(selected, 'sublocality');
+      const region = prefectureToRegion(prefecture);
+      const photoRefs = (selected.photos ?? []).map((p) => p.name);
 
-    await savePlace({
-      google_place_id: selected.id,
-      name: selected.displayName.text,
-      lat: selected.location.latitude,
-      lng: selected.location.longitude,
-      category,
-      region,
-      prefecture,
-      city,
-      neighborhood: neighborhood ?? null,
-      visited: false,
-      ranking: null,
-      photo_references: photoRefs,
-    });
+      await savePlace({
+        google_place_id: selected.id,
+        name: selected.displayName.text,
+        lat: selected.location.latitude,
+        lng: selected.location.longitude,
+        category,
+        region,
+        prefecture,
+        city,
+        neighborhood: neighborhood ?? null,
+        visited: false,
+        ranking: null,
+        photo_references: photoRefs,
+      });
 
-    setSaving(false);
-    setSelected(null);
-    router.back();
+      setSelected(null);
+      router.back();
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
