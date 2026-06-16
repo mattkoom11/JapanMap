@@ -83,6 +83,7 @@ CREATE TABLE places (
   region           region_enum NOT NULL,
   prefecture       text NOT NULL,
   city             text,           -- nullable; only set for Tokyo, Osaka, Kyoto, Sapporo
+  neighborhood     text,           -- nullable; from sublocality_level_1 (e.g. "Shimokitazawa", "Koenji")
   visited          boolean NOT NULL DEFAULT false,
   ranking          int CHECK (ranking BETWEEN 1 AND 5),  -- nullable until visited
   photo_references jsonb,          -- array of Google photo reference strings
@@ -105,17 +106,19 @@ Bottom sheet with two snap points (collapsed / half-screen).
 ```
 [ Category ]   vintage  restaurant  cafe  museum  poi    (pill toggles, multi-select)
 
-[ Scope ]      All Japan  |  Region  |  Prefecture  |  City   (tab selector)
+[ Scope ]      All Japan  |  Region  |  Prefecture  |  City  |  Neighborhood   (tab selector)
 
 [ Value ]      shown only when Scope ≠ All Japan
-               Region      → 8 region buttons
-               Prefecture  → scrollable list of 47
-               City        → Tokyo / Osaka / Kyoto / Sapporo
+               Region        → 8 region buttons
+               Prefecture    → scrollable list of 47
+               City          → Tokyo / Osaka / Kyoto / Sapporo
+               Neighborhood  → scrollable list of distinct neighborhoods from saved collection
 ```
 
 - Filters apply instantly; map pins update in real time
 - Narrowing scope animates the map camera to fit the selected area
 - "Clear all" resets to full Japan view
+- Neighborhood list is dynamic — populated from distinct `neighborhood` values in the user's saved places (e.g. "Shimokitazawa", "Koenji", "Nakameguro"). Not a fixed enum.
 
 ---
 
