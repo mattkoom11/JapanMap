@@ -4,11 +4,16 @@
     "slug": "japan-map",
     "version": "1.0.0",
     "scheme": "japanmap",
-    "platforms": ["ios"],
+    "platforms": [
+      "ios"
+    ],
     "ios": {
       "bundleIdentifier": "com.personal.japanmap",
       "config": {
-        "googleMapsApiKey": ""
+        "googleMapsApiKey": "AIzaSyD31LXh75LhQlR_ZxoEgRuPMvgY238MwGY"
+      },
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "plugins": [
@@ -16,12 +21,18 @@
       [
         "react-native-maps",
         {
-          "googleMapsApiKey": ""
+          "googleMapsApiKey": "AIzaSyD31LXh75LhQlR_ZxoEgRuPMvgY238MwGY"
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "55c5b5b0-eff8-472f-9ab7-116ab591fe0b"
+      }
     }
   }
 }
